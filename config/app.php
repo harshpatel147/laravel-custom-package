@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \Smiley\Calculator\CalculatorServiceProvider::class,
 
         /*
          * Application Service Providers...

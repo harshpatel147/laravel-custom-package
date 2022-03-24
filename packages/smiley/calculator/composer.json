@@ -1,0 +1,19 @@
+{
+    "name": "smiley/calculator",
+    "description": "calculator - a simple package for calculator",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Smiley\\Calculator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Harsh",
+            "email": "harsh.microtechos@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
