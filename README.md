@@ -1,3 +1,11 @@
+<h1 style="text-align: center;">Important</h1>
+
+**1.** <a href="https://github.com/harshpatel147/laravel-custom-package-laravel-directory/blob/main/packages/smiley/test-custompackage/README.md">see this ReadMe File Notes</a> for step by step info about **how to create laravel custom package**.
+<br/>
+<br/>
+
+<hr>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
