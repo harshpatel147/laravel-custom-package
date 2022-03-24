@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Smiley\TestCustompackage\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/greet/{name}', function($isName) {
+    $oGreetr = new Test();
+    return $oGreetr->greet($isName);
 });
