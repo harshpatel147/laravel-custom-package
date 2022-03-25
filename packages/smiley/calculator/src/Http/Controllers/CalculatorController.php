@@ -8,29 +8,31 @@ use Smiley\Calculator\Http\Requests\CalculatorDivPostRequest;
 
 class CalculatorController extends Controller
 {
-    public function add($a, $b)
-    {
-        $result = $a + $b;
-        return view('calculator::app', compact('result'));
-    }
-
-    public function sub($a, $b)
-    {
-        $result = $a - $b;
-        return view('calculator::app', compact('result'));
-    }
-
-    public function mul($a, $b)
-    {
-        $result = $a * $b;
-        return view('calculator::app', compact('result'));
-    }
-
-    public function div(CalculatorDivPostRequest $request, $a, $b)
+    public function add(CalculatorDivPostRequest $request)
     {
         $validated = $request->validated();
-        print_r($validated);
-        $result = $a / $b;
+        // print_r($validated);
+        $result = $request->a + $request->b;
+        return view('calculator::app', compact('result'));
+    }
+
+    public function sub(CalculatorDivPostRequest $request)
+    {
+        $result = $request->a - $request->b;
+        return view('calculator::app', compact('result'));
+    }
+
+    public function mul(CalculatorDivPostRequest $request)
+    {
+        $result = $request->a * $request->b;
+        return view('calculator::app', compact('result'));
+    }
+
+    public function div(CalculatorDivPostRequest $request)
+    {
+        // $validated = $request->validated();
+        // print_r($validated);
+        $result = $request->a / $request->b;
         return view('calculator::app', compact('result'));
     }
 }

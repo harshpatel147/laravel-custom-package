@@ -45,13 +45,32 @@ class CalculatorDivPostRequest extends FormRequest
      */
     public function validationData()
     {
-        return array_merge($this->request->all(), [
-            'a' => Route::input('a'),
-            'b' => Route::input('b'),
-            // 'b' => $this->route('b'),
-        ]);
+        if($this->request->get('a')){
+            return $this->request->all();
+        }else{
+            return array_merge($this->request->all(), [
+                'a' => Route::input('a'),
+                'b' => Route::input('b'),
+                // 'b' => $this->route('b'),
+            ]);
+        }
     }
 
+    // /**
+    //  * Configure the validator instance.
+    //  *
+    //  * @param  \Illuminate\Validation\Validator  $validator
+    //  * @return void
+    //  */
+    // public function withValidator($validator)
+    // {
+    //     $validator->after(function ($validator) {
+    //         if ($this->somethingElseIsInvalid()) {
+    //             $validator->errors()->add('field', 'Something is wrong with this field!');
+    //         }
+    //     });
+    // }
+    
     // /**
     //  * Get the URL to redirect to on a validation error.
     //  *
