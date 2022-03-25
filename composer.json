@@ -26,7 +26,8 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Smiley\\TestCustompackage\\": "packages/smiley/test-custompackage/src",
-            "Smiley\\Calculator\\": "packages/smiley/Calculator/src"
+            "Smiley\\Calculator\\": "packages/smiley/Calculator/src",
+            "Smiley\\UserCrud\\": "packages/smiley/user-crud/src"
         }
     },
     "autoload-dev": {

@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         \Smiley\Calculator\CalculatorServiceProvider::class,
+        \Smiley\UserCrud\UserCrudServiceProvider::class,
 
         /*
          * Application Service Providers...
