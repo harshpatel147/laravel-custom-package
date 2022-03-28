@@ -4,13 +4,71 @@ namespace Smiley\UserCrud\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Smiley\UserCrud\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Smiley\UserCrud\Http\Requests\UserManagement\UserPostRequest;
+use Smiley\UserCrud\UserCrud;
 
 class UserManagementController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        echo User::first();
+        // echo $this->test('user')->first();
+        // echo config('usercrud.column_names.sdshdhg.dshj', '\Smiley\UserCrud\Models\User')::first();
         echo 'Hello from the user crud package controller!';
+        echo UserCrud::getModel('user')->first();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('usercrud::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(UserPostRequest $request)
+    {
+        if($request->password){
+            $password = Hash::make($request->password);
+
+            $request->merge([
+                'password' => $password,
+            ]);
+        }
+        $user = UserCrud::getModel('user')::create($request->all());
+        return redirect()->route('usercrud::admin.user.index')->with('alertClass', 'success')->with('successMsg', 'User Created Successfully');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $editData = UserCrud::getModel('user')::where('id', '=', $id)->first();
+        if(!$editData){
+            return redirect()->route('usercrud::admin.user.index')->with('alertClass', 'danger')->with('successMsg', 'User may be already deleted');
+        }
+        return view('usercrud::create', compact('editData'));
+    }
+
+    public function update(UserPostRequest $request, $id)
+    {
+        # code...
     }
 }

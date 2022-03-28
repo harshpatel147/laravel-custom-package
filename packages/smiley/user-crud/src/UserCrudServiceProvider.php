@@ -26,8 +26,11 @@ class UserCrudServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/usercrud.php', 'usercrud');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'usercrud');
         $this->publishes([
             __DIR__.'/../config/usercrud.php' => config_path('usercrud.php'),
+            __DIR__.'/Models/User.php' => app_path('Models/User.php'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/usercrud'),
         ]);
         
     }
