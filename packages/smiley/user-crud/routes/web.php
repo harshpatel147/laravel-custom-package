@@ -11,4 +11,6 @@ Route::middleware('web')->group(function(){
     Route::post(config('usercrud.urls.user-create', 'admin/user/create'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'store'])->name('usercrud::admin.user.create');
     Route::get(config('usercrud.urls.user-edit', 'admin/user/edit/{id}'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'edit'])->name('usercrud::admin.user.edit');
     Route::put(config('usercrud.urls.user-edit', 'admin/user/edit/{id}'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'update'])->name('usercrud::admin.user.edit');
+
+    Route::get('forgot-password', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'forgotPassword'])->middleware('guest')->name('password.request'); // forgot password page
 });

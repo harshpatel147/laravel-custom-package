@@ -3,6 +3,7 @@
 namespace Smiley\UserCrud;
 
 use Illuminate\Support\ServiceProvider;
+use Smiley\UserCrud\Providers\EventServiceProvider;
 
 class UserCrudServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class UserCrudServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(EventServiceProvider::class); // register an package's event service provider with application
     }
 
     /**

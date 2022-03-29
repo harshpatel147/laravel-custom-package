@@ -34,14 +34,14 @@ class UserPostRequest extends FormRequest
             return [
                 'name' => 'required',
                 'email' => 'required|email',
-                'contact' => 'required',
+                'contact_number' => 'required',
             ];
         }else{
             return [
                 'name' => 'required',
                 'email' => 'required|email|unique:' . config('usercrud.table_names.users'),
                 'password' => 'required',
-                'contact' => 'required'
+                'contact_number' => 'required'
             ];
         }
     }

@@ -3,6 +3,7 @@
 namespace Smiley\UserCrud\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Smiley\UserCrud\Http\Requests\UserManagement\UserPostRequest;
@@ -41,7 +42,7 @@ class UserManagementController extends Controller
      */
     public function store(UserPostRequest $request)
     {
-        if($request->password){
+        if($request->filled('password')){
             $password = Hash::make($request->password);
 
             $request->merge([
@@ -69,6 +70,18 @@ class UserManagementController extends Controller
 
     public function update(UserPostRequest $request, $id)
     {
-        # code...
+        $user = UserCrud::getModel('user')::where('id', '=', $id)->first();
+        if(!$user){
+            return redirect()->back()->with('alertClass', 'danger')->with('successMsg', 'User may be already deleted');
+        }
+        $user->update($request->except('password'));
+        if($request->filled('password')){
+            $password = Hash::make($request->password);
+
+            $user->password = $password;
+            $user->save();
+            event(new PasswordReset($user));
+        }
+        return redirect()->back()->with('alertClass', 'success')->with('successMsg', 'User updated successfully');
     }
 }
