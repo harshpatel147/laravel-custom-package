@@ -44,7 +44,7 @@ return [
     | Model Path - that is used to initilize Model for perform DB operation in package 
     |--------------------------------------------------------------------------
     |
-    | default value = \Smiley\UserCrud\Models\{Your_Model_Name}
+    | default value = \Smiley\UserCrud\Models\{Your_Model_Name}::class
     |
     |----- IMPORTANT FOR OVERRIDE MODEL ---------------------------------------
     | if you wants to overide the package's Model then, follow below steps
@@ -56,13 +56,13 @@ return [
     |       class User extends \Smiley\UserCrud\Models\User{ } 
     |   # STEP 2 : then I change model's namespace path like below
     |       'models' => [
-    |           'user' => '\App\Models\User'
+    |           'user' => \App\Models\User::class
     |       ]
     |--------------------------------------------------------------------------
     |
     */
 
     'models' => [
-        'user' => '\Smiley\UserCrud\Models\User'
+        'user' => \Smiley\UserCrud\Models\User::class
     ]
 ];

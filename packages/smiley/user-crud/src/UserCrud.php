@@ -18,11 +18,10 @@ class UserCrud
     {
         try { 
             $classname = config('usercrud.models.' . $attr);
-            if($classname){
-                return new $classname();
-            }else{
+            if(empty($classname)){
                 throw new \Exception('Class name must be a valid object or a string. Model Class not found');
             }
+            return $classname;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
