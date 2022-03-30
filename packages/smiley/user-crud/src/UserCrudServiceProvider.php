@@ -2,8 +2,10 @@
 
 namespace Smiley\UserCrud;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Smiley\UserCrud\Providers\EventServiceProvider;
+use Yajra\DataTables\DataTablesServiceProvider;
 
 class UserCrudServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,10 @@ class UserCrudServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /* $this->app->register(DataTablesServiceProvider::class);
+        $loader = AliasLoader::getInstance();
+        $loader->alias('DataTables', '\Yajra\DataTables\Facades\DataTables'); */
+
         $this->mergeConfigFrom(__DIR__.'/../config/usercrud.php', 'usercrud');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');

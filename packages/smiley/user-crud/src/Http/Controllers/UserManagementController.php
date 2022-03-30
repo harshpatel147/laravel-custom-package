@@ -3,11 +3,13 @@
 namespace Smiley\UserCrud\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\View\Components\Admin\Form\Datatable\BtnGroup;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Smiley\UserCrud\Http\Requests\UserManagement\UserPostRequest;
 use Smiley\UserCrud\UserCrud;
+use Yajra\DataTables\DataTables;
 
 class UserManagementController extends Controller
 {
@@ -16,8 +18,26 @@ class UserManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            $data = UserCrud::getModel('user')::select('*');
+            if($request->order == null){
+                $data->orderBy('created_at', 'desc');
+            }
+            return DataTables::of($data)
+            ->addColumn('action', function($data){
+                $arr = json_encode([
+                    array('urlMethod' => "get", 'plainTxt' => "<span class=\"d-inline-flex align-items-center\"><i class=\"far fa-edit text-primary\"></i> Edit</span>", 'urlRoute' => "usercrud::admin.user.edit", 'urlRouteParam' => $data->id, 'class' => "btn btn-default"), 
+                    array('urlMethod' => "get", 'plainTxt' => "<span class=\"d-inline-flex align-items-center\"><i class=\"far fa-trash-alt text-danger\"></i> Delete</span>", 'urlRoute' => "#", 'id' => "delete". $data->id, 'class' => "btn btn-default deleteRecord"),
+                ]);
+                $data = new BtnGroup($arr);
+                return $data->render()->with($data->data());
+            })
+            ->make(true);
+        }
+        return view('usercrud::index');
+        
         // echo $this->test('user')->first();
         // echo config('usercrud.column_names.sdshdhg.dshj', '\Smiley\UserCrud\Models\User')::first();
         echo 'Hello from the user crud package controller!';

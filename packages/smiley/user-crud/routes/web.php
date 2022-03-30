@@ -7,6 +7,7 @@ Route::middleware('web')->group(function(){
         echo 'Hello from the user crud package!';
     }); */
     Route::get(config('usercrud.urls.user-list', 'admin/user'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'index'])->name('usercrud::admin.user.index');
+    Route::post(config('usercrud.urls.user-list', 'admin/user'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'index'])->name('usercrud::admin.user.index');
     Route::get(config('usercrud.urls.user-create', 'admin/user/create'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'create'])->name('usercrud::admin.user.create');
     Route::post(config('usercrud.urls.user-create', 'admin/user/create'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'store'])->name('usercrud::admin.user.create');
     Route::get(config('usercrud.urls.user-edit', 'admin/user/edit/{id}'), [\Smiley\UserCrud\Http\Controllers\UserManagementController::class, 'edit'])->name('usercrud::admin.user.edit');
