@@ -1,0 +1,19 @@
+{
+    "name": "smiley/product-management",
+    "description": "Product-management is a simple package for manage Products",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Smiley\\ProductManagement\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Harsh",
+            "email": "harsh.microtechos@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

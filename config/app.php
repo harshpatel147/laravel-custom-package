@@ -167,6 +167,7 @@ return [
          */
         \Smiley\Calculator\CalculatorServiceProvider::class,
         \Smiley\UserCrud\UserCrudServiceProvider::class,
+        \Smiley\ProductManagement\ProductManagementServiceProvider::class,
 
         /*
          * Application Service Providers...
